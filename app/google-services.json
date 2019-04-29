@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "307869796389",
+    "firebase_url": "https://linio-b24a5.firebaseio.com",
+    "project_id": "linio-b24a5",
+    "storage_bucket": "linio-b24a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307869796389:android:df610f76d383c37a",
+        "android_client_info": {
+          "package_name": "com.app.linio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307869796389-o6cg6oaied1relkf6im07i2bl7usegl3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvc3cYlC2qQtH4Sd_KO9jbiuBKXHdOG7c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307869796389-o6cg6oaied1relkf6im07i2bl7usegl3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
