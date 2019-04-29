@@ -21,7 +21,7 @@ public class SplashScreen extends Activity {
             @Override
             public  void run() {
                 try {
-                    TimeUnit.MILLISECONDS.sleep(2000);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 } catch (Exception e) {
                     Toast.makeText(SplashScreen.this,"Unable to load splash screen",Toast.LENGTH_LONG).show();
                 }
