@@ -9,13 +9,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawer;
     NavigationView navigation;
     ActionBarDrawerToggle actionBarDrawerToggle;
+
+    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +34,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
         actionBarDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,drawer,0,0);
         drawer.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+
+        auth = FirebaseAuth.getInstance();
+
+        if (auth.getCurrentUser() == null) {
+            hideNonAuthLinks();
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new Signup())
+                    .commit();
+        }
+        else {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragmentContainer, new Panels())
+                    .commit();
+        }
     }
 
     @Override
@@ -66,6 +85,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setActionBarTitle("PANELS");
                 drawer.closeDrawers();
                 break;
+            case R.id.logout:
+                transaction.replace(R.id.fragmentContainer,new Login());
+                setActionBarTitle("LINIO");
+                auth.signOut();
+                hideNonAuthLinks();
+                drawer.closeDrawers();
+                break;
         }
         transaction.commit();
         return false;
@@ -78,5 +104,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setTitle(title);
         }
+    }
+
+    private void hideNonAuthLinks() {
+        Menu menu = navigation.getMenu();
+        menu.findItem(R.id.panels).setVisible(false);
     }
 }
